@@ -12,6 +12,12 @@ class InertiaTestController extends Controller
     {
         return Inertia::render('Inertia/Index');
     }
+
+    public function create()
+    {
+        return Inertia::render('Inertia/Create');
+    }
+    
     public function show($id)
     {
         // dd($id); //変数が渡ってきているかを確認
