@@ -10,14 +10,17 @@ class InertiaTestController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Inertia/Index');
+        // 第2引数でデータを渡す
+        return Inertia::render('Inertia/Index', [
+            'blogs' => InertiaTest::all() 
+        ]);
     }
 
     public function create()
     {
         return Inertia::render('Inertia/Create');
     }
-    
+
     public function show($id)
     {
         // dd($id); //変数が渡ってきているかを確認
@@ -29,11 +32,20 @@ class InertiaTestController extends Controller
 
     public function store(Request $request)
     {
+        //バリデーション（エラーがあるなら、ビュー側にerrorオブジェクトが渡る
+        $request->validate([
+            'title' => ['required', 'max:20'],
+            'content' => ['required'],
+        ]); 
+        
         $inertiaTest = new InertiaTest;
         $inertiaTest->title = $request->title; //requestからわたってくるものを入れる
         $inertiaTest->content = $request->content;
         $inertiaTest->save(); //保存を忘れずに
         
-        return to_route('inertia.index');
+        return to_route('inertia.index') 
+        ->with([ // フラッシュメッセージ
+            'message' => '登録しました'
+        ]);
     }
 }
