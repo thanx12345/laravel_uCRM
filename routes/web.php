@@ -21,6 +21,11 @@ Route::get('inertia-test', function () {
     }
 );
 
+Route::get('component-test', function () {
+    return Inertia::render('ComponentTest');
+    }
+);
+
 // CRUD
 Route::get('/inertia/index', [InertiaTestController::class,'index'])->name('inertia.index');
 Route::get('/inertia/create', [InertiaTestController::class,'create'])->name('inertia.create');
