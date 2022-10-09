@@ -45,10 +45,14 @@ class ItemController extends Controller
         Item::create([
             'name' => $request->name,
             'memo' => $request->memo,
-            'price' => $request->price,
+            'price' => $request->price
         ]);
-        
-        return to_route('items.index');
+
+        return to_route('items.index')
+        ->with([
+            'message' => '登録しました。' ,
+            'status' => 'success' // 追記;
+        ]);
     }
 
     /**

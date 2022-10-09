@@ -3,10 +3,7 @@
     import { Head, Link } from '@inertiajs/inertia-vue3';
     import { reactive } from 'vue' // reactiveをimport
     import { Inertia } from '@inertiajs/inertia' // Inertiaをimport
-
-    defineProps({
-        errors: Object
-    })
+    import ValidationErrors from '@/Components/ValidationErrors.vue'
 
     const form = reactive({
       name: null, //初期値
@@ -32,6 +29,7 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
+                            <ValidationErrors class="mb-4"/> 
                             <section class="text-gray-600 body-font relative">
                                 <form @submit.prevent="storeItem">
                                     <div class="container px-5 py-8 mx-auto">

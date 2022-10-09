@@ -44,7 +44,8 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
             'flash' =>[ //アロー関数をはさむと必要な時だけ呼び出せる（部分リロード）
-                'message' => fn() => $request->session()->get('message')
+                'message' => fn() => $request->session()->get('message'),
+                'status' => fn() => $request->session()->get('status'), //追記
             ]
         ]);
     }
