@@ -5,9 +5,10 @@ import { onMounted, reactive, ref, computed } from 'vue' // reactiveをimport
 import { Inertia } from '@inertiajs/inertia' // Inertiaをimport
 import ValidationErrors from '@/Components/ValidationErrors.vue'
 import { getToday } from '@/common' // 別ファイルをインポート
+import MicroModal from '@/Components/MicroModal.vue'
 
 const props = defineProps({
-'customers': Array,
+// 'customers': Array,
 'items': Array
 })
 
@@ -51,6 +52,10 @@ const storePurchase = () => {
     Inertia.post(route('purchases.store'), form)
 }
 const quantity = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] // option用
+
+const setCustomerId = id => {
+   form.customer_id = id 
+}
 
 </script>
     
